@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Responsive nature website</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <title>To-Do-List</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="signup.css">
-        <link rel="icon" href="mountain-1.jpg"> 
     </head>
     <body>
-        <section>
-            <input type="checkbox" id="check" />
-            <header>
-                <h2> <a href="#" class="Logo">Logo</a> </h2>
-                <div class="nav">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Info</a>
-                    <a href="#">Services</a>
-                    <a href="#">Contact</a>
-                </div>
-                <label for="check">
-                    <i class="fas fa-bars menu-btn"></i>
-                    <i class="fas fa-times close-btn"></i>
-                </label>
-            </header>
-            <div class="content">
-                <div class="info">
-                    <h2>Like nature<br><span>Be Creative</span></h2>
-                    <p>In the embrace of nature, whispers of the wind harmonize with the rustle of leaves, weaving a timeless symphony. Each sunrise paints the canvas of the sky with hues of serenity, inviting all to witness the poetry of existence written in the language of trees and rivers. In nature's quiet refuge, the heart finds solace, and the spirit dances with the rhythm of the Earth.</p>
-                    <a href="#" class="info-btn">More info</a>
-                </div>
+        <div class="container">
+            <div class="box">
+                <h2>To-Do-List</h2>
+                <input type="text" placeholder="Type here..." id="inputbx">
+                <ul id="list"></ul>
             </div>
-            <ul class="media-icons">
-               <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-            </ul>
-        </section>
+        </div>
+    <script>
+        let inputbx=document.querySelector("#inputbx");
+        let list=document.querySelector("#list");
+        
+        inputbx.addEventListener("keyup",function(event){
+            if(event.key == "Enter")
+            {
+                addItem(this.value);
+                this.value=""
+            }
+        })
+
+        let addItem = (inputbx) =>{
+           let listItem=document.createElement("li");
+           listItem.innerHTML= `${inputbx}<i></i>`;
+            
+            listItem.addEventListener("click",function(){
+               this.classList.toggle('done');
+            })
+
+            listItem.querySelector("i").addEventListener("click",function(){
+                listItem.remove();
+            })
+            list.appendChild(listItem);
+        }
+    </script>
     </body>
 </html>
